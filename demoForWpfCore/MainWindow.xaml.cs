@@ -23,6 +23,26 @@ namespace demoForWpfCore
         public MainWindow()
         {
             InitializeComponent();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            TextBoxForSource.Text = WebViewForMain.Source?.ToString();
+        }
+
+        private void BorderForNavi_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            var sourceContext = TextBoxForSource.Text?.Trim();
+            WebViewForMain.CoreWebView2.Navigate(sourceContext);
+        }
+
+        private void TextBoxForSource_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                BorderForNavi_MouseDown(null, null);
+            }
         }
     }
 }
