@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Web.WebView2.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,11 +51,57 @@ namespace demoForWpfCore
         {
             if (e.IsSuccess)
             {
-
+                WebViewForMain.CoreWebView2.ProcessFailed += CoreWebView2_ProcessFailed;
             }
             else
             {
                 MessageBox.Show($"WebView2创建失败，发生异常 = {e.InitializationException}");
+            }
+        }
+
+
+        private void CoreWebView2_ProcessFailed(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2ProcessFailedEventArgs e)
+        {
+            switch (e.ProcessFailedKind)
+            {
+                // 浏览器进程退出
+                case CoreWebView2ProcessFailedKind.BrowserProcessExited:
+                {
+
+                }
+                break;
+                 // 浏览器渲染进程未响应
+                case CoreWebView2ProcessFailedKind.RenderProcessUnresponsive:
+                {
+
+                }
+                break;
+                // 浏览器渲染进程退出
+                case CoreWebView2ProcessFailedKind.RenderProcessExited:
+                {
+
+                }
+                break;
+                    // 框架渲染进程退出
+                case CoreWebView2ProcessFailedKind.FrameRenderProcessExited:
+                {
+                    
+                }
+                break;
+                default:
+                {
+                    // Show the process failure details. Apps can collect info for their logging purposes.
+                    StringBuilder messageBuilder = new StringBuilder();
+                    messageBuilder.AppendLine($"Process kind: {e.ProcessFailedKind}");
+                    messageBuilder.AppendLine($"Reason: {e.Reason}");
+                    messageBuilder.AppendLine($"Exit code: {e.ExitCode}");
+                    messageBuilder.AppendLine($"Process description: {e.ProcessDescription}");
+                    System.Threading.SynchronizationContext.Current.Post((_) =>
+                    {
+                        MessageBox.Show(messageBuilder.ToString(), "Child process failed", MessageBoxButton.OK);
+                    }, null);
+                }
+                break;
             }
         }
 
