@@ -24,6 +24,26 @@ namespace demoForWpfCore
         {
             InitializeComponent();
             Loaded += Demo2Window_Loaded;
+            WebViewForMain.NavigationStarting += WebViewForMain_NavigationStarting;
+            WebViewForMain.NavigationCompleted += WebViewForMain_NavigationCompleted;
+        }
+
+        private void WebViewForMain_NavigationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
+        {
+            if (e.IsSuccess)
+            {
+                TextBoxForSource.Text = WebViewForMain.Source?.ToString();
+            }
+        }
+
+        private void WebViewForMain_NavigationStarting(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e)
+        {
+            var uri = e.Uri;
+            if (!uri.ToLower().StartsWith("https://"))
+            {
+                WebViewForMain.CoreWebView2.ExecuteScriptAsync($"alert('{uri} 不安全，请使用HTTPS地址重新访问！')");
+                e.Cancel = true;
+            }
         }
 
         private void Demo2Window_Loaded(object sender, RoutedEventArgs e)
