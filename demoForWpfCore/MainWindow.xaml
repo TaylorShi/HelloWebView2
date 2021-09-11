@@ -60,7 +60,7 @@
                 MouseDown="BorderForNavi_MouseDown"
                 >
                 <TextBlock
-                    x:Name="TextBoxForNavi"
+                    x:Name="TextBlockForNavi"
                     Text="导航" 
                     Width="100"
                     FontSize="18"
