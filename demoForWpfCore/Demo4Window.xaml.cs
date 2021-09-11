@@ -42,6 +42,39 @@ namespace demoForWpfCore
             Loaded += Demo4Window_Loaded;
             WebViewForMain.NavigationStarting += WebViewForMain_NavigationStarting;
             WebViewForMain.NavigationCompleted += WebViewForMain_NavigationCompleted;
+            WebViewForMain.KeyDown += WebViewForMain_KeyDown;
+            WebViewForMain.CoreWebView2InitializationCompleted += WebViewForMain_CoreWebView2InitializationCompleted;
+        }
+
+        private void WebViewForMain_CoreWebView2InitializationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2InitializationCompletedEventArgs e)
+        {
+            if (e.IsSuccess)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show($"WebView2创建失败，发生异常 = {e.InitializationException}");
+            }
+        }
+
+        private void WebViewForMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.IsRepeat) return;
+            bool ctrl = e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) || e.KeyboardDevice.IsKeyDown(Key.RightCtrl);
+            bool alt = e.KeyboardDevice.IsKeyDown(Key.LeftAlt) || e.KeyboardDevice.IsKeyDown(Key.RightAlt);
+            bool shift = e.KeyboardDevice.IsKeyDown(Key.LeftShift) || e.KeyboardDevice.IsKeyDown(Key.RightShift);
+
+            if (e.Key == Key.N && ctrl && !alt && !shift)
+            {
+                new MainWindow().Show();
+                e.Handled = true;
+            }
+            else if (e.Key == Key.W && ctrl && !alt && !shift)
+            {
+                Close();
+                e.Handled = true;
+            }
         }
 
         private void WebViewForMain_NavigationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
