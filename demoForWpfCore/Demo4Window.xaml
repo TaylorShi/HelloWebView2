@@ -7,69 +7,194 @@
     xmlns:local="clr-namespace:demoForWpfCore" 
     xmlns:wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
     mc:Ignorable="d"
-    Title="WebView2浏览器" 
+    Title="MiniEdge" 
     Height="800" 
     Width="1367"
     WindowStartupLocation="CenterScreen"
     WindowState="Normal"
+    Background="#f7f7f7"
     >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid 
+        <Grid
             Grid.Row="0"
             x:Name="GirdForOperate"
-            Margin="8,4"
+            Margin="0,4"
             >
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="8"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="8"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Border
-                x:Name="BorderForSource"
-                CornerRadius="4"
-                Grid.Column="0" 
-                Height="44" 
-                BorderBrush="Gray" 
-                BorderThickness="1" 
-                Padding="4"
-                >
+
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="8"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Border
+                    x:Name="BorderForNaviBack"
+                    CornerRadius="4"
+                    Grid.Column="1"
+                    Padding="16,4"
+                    MouseEnter="BorderForButton_MouseEnter"
+                    MouseLeave="BorderForButton_MouseLeave"
+                    MouseDown="BorderForNaviBack_MouseDown"
+                    >
+                    <TextBlock
+                        x:Name="TextBlockForNaviBack"
+                        FontFamily="/MiniEdge;component/Fonts/#Segoe Fluent Icons" 
+                        Text="&#57618;"
+                        FontSize="24"
+                        VerticalAlignment="Center"
+                        Foreground="Black"
+                        />
+                </Border>
+                <Border
+                    x:Name="BorderForNaviForward"
+                    CornerRadius="4"
+                    Grid.Column="3"
+                    Padding="16,4"
+                    MouseEnter="BorderForButton_MouseEnter"
+                    MouseLeave="BorderForButton_MouseLeave"
+                    MouseDown="BorderForNaviForward_MouseDown"
+                    >
+                    <TextBlock
+                        x:Name="TextBlockForNaviForward"
+                        FontFamily="/MiniEdge;component/Fonts/#Segoe Fluent Icons" 
+                        Text="&#57515;"
+                        FontSize="24"
+                        VerticalAlignment="Center"
+                        Foreground="Black"
+                        />
+                </Border>
+                <Grid Grid.Column="5">
+                    <Border
+                        x:Name="BorderForNaviStop"
+                        CornerRadius="4"
+                        Grid.Column="5"
+                        Padding="16,4"
+                        MouseEnter="BorderForButton_MouseEnter"
+                        MouseLeave="BorderForButton_MouseLeave"
+                        MouseDown="BorderForNaviStop_MouseDown"
+                        Visibility="Collapsed"
+                        >
+                        <TextBlock
+                            x:Name="TextBlockForNaviStop"
+                            FontFamily="/MiniEdge;component/Fonts/#Segoe Fluent Icons" 
+                            Text="&#57606;"
+                            FontSize="26"
+                            VerticalAlignment="Center"
+                            Foreground="Black"
+                            />
+                    </Border>
+                    <Border
+                        x:Name="BorderForNaviRefresh"
+                        CornerRadius="4"
+                        Grid.Column="5"
+                        Padding="16,4"
+                        MouseEnter="BorderForButton_MouseEnter"
+                        MouseLeave="BorderForButton_MouseLeave"
+                        MouseDown="BorderForNaviRefresh_MouseDown"
+                        >
+                        <TextBlock
+                            x:Name="TextBlockForNaviRefresh"
+                            FontFamily="/MiniEdge;component/Fonts/#Segoe Fluent Icons" 
+                            Text="&#57673;"
+                            FontSize="24"
+                            VerticalAlignment="Center"
+                            Foreground="Black"
+                            />
+                    </Border>
+                </Grid>
+                
+                <Border
+                    x:Name="BorderForNaviHome"
+                    CornerRadius="4"
+                    Grid.Column="7"
+                    Padding="16,4"
+                    MouseEnter="BorderForButton_MouseEnter"
+                    MouseLeave="BorderForButton_MouseLeave"
+                    MouseDown="BorderForNaviHome_MouseDown"
+                    >
+                    <TextBlock
+                        x:Name="TextBlockForNaviHome"
+                        FontFamily="/MiniEdge;component/Fonts/#Segoe Fluent Icons" 
+                        Text="&#57615;"
+                        FontSize="24"
+                        VerticalAlignment="Center"
+                        Foreground="Black"
+                        />
+                </Border>
+
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Border
+                    x:Name="BorderForNaviAddress"
+                    CornerRadius="4"
+                    Grid.Column="2"     
+                    Height="44" 
+                    BorderBrush="Gray" 
+                    BorderThickness="1" 
+                    Padding="4"
+                    Background="White"
+                    >
+                </Border>
+                
                 <TextBox
-                    x:Name="TextBoxForSource"
+                    Margin="4"
+                    x:Name="TextBoxForNaviAddress"
                     BorderThickness="0" 
                     TextAlignment="Left" 
                     TextWrapping="NoWrap" 
                     Padding="0,6,0,4" 
                     Text=""
                     FontSize="18"
-                    KeyDown="TextBoxForSource_KeyDown"
+                    KeyDown="TextBoxForNaviAddress_KeyDown"
+                    MouseEnter="TextBoxForNaviAddress_MouseEnter"
+                    MouseLeave="TextBoxForNaviAddress_MouseLeave"
+                    Background="White"
+                    Foreground="Black"
                     />
-            </Border>
+            </Grid>
+            
 
-            <Border
-                x:Name="BorderForNavi"
-                CornerRadius="4"
-                Grid.Column="2"
-                BorderBrush="#0780d8" 
-                BorderThickness="1" 
-                Background="#39baf4"
-                Padding="4"
-                MouseDown="BorderForNavi_MouseDown"
-                >
-                <TextBlock
-                    x:Name="TextBlockForNavi"
-                    Text="导航" 
-                    Width="100"
-                    FontSize="18"
-                    Background="Transparent"
-                    Foreground="White"
-                    TextAlignment="Center"
-                    VerticalAlignment="Center"
-                    />
-            </Border>
+            <Grid Grid.Column="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="8"/>
+                </Grid.ColumnDefinitions>
+                <Border
+                    x:Name="BorderForNaviTarget"
+                    CornerRadius="4"
+                    Grid.Column="0"
+                    Padding="16,4"
+                    MouseDown="BorderForNaviTarget_MouseDown"
+                    MouseEnter="BorderForButton_MouseEnter"
+                    MouseLeave="BorderForButton_MouseLeave"
+                    >
+                    <TextBlock
+                        x:Name="TextBlockForNaviTarget"
+                        FontFamily="/MiniEdge;component/Fonts/#Segoe Fluent Icons" 
+                        Text="&#57763;"
+                        FontSize="24"
+                        VerticalAlignment="Center"
+                        Foreground="Black"
+                        />
+                </Border>
+            </Grid>
         </Grid>
         <ProgressBar             
             Grid.Row="0"
@@ -80,10 +205,11 @@
             IsIndeterminate="False"
             Visibility="Collapsed"
             />
-        <wpf:WebView2
-            x:Name="WebViewForMain"
-            Grid.Row="1"
-            Source="https://www.bing.com"
-            />
+        <Border Background="White" Grid.Row="1">
+            <wpf:WebView2
+                x:Name="WebViewForMain"
+                Source="https://www.bing.com"
+                />
+        </Border>
     </Grid>
 </Window>

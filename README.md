@@ -9,3 +9,11 @@
 ## 相关文章
 
 * [乘风破浪，遇见最美Windows 11之现代Windows桌面应用开发 - Microsoft Edge WebView2](https://www.cnblogs.com/taylorshi/p/15249599.html)
+
+## 屏幕截图
+
+![](./Assets/2021-09-14-20-30-49.png)
+
+## 发行预览
+
+* [https://github.com/TaylorShi/HelloWebView2/releases](https://github.com/TaylorShi/HelloWebView2/releases)

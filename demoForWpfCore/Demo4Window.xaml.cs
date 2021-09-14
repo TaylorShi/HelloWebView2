@@ -34,6 +34,12 @@ namespace demoForWpfCore
                 GirdForProgress.IsEnabled = value;
                 GirdForProgress.IsIndeterminate = value;
                 GirdForProgress.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+
+                BorderForNaviRefresh.IsEnabled = !value;
+                TextBlockForNaviRefresh.Foreground = !value ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.Gray);
+
+                BorderForNaviStop.Visibility = value ? Visibility.Visible : Visibility.Collapsed;
+                BorderForNaviRefresh.Visibility = !value ? Visibility.Visible : Visibility.Collapsed;
             } 
         }
 
@@ -128,41 +134,230 @@ namespace demoForWpfCore
         {
             if (e.IsSuccess)
             {
-                TextBoxForSource.Text = WebViewForMain.Source?.ToString();
+                TextBoxForNaviAddress.Text = WebViewForMain.Source?.ToString();
             }
 
             IsNavigationProgress = false;
+            UpdateNaviButtonStatus();
         }
 
         private void WebViewForMain_NavigationStarting(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e)
         {
-            var uri = e.Uri;
-            if (!uri.ToLower().StartsWith("https://"))
-            {
-                WebViewForMain.CoreWebView2.ExecuteScriptAsync($"alert('{uri} 不安全，请使用HTTPS地址重新访问！')");
-                e.Cancel = true;
-            }
+            //var uri = e.Uri;
+            //if (!uri.ToLower().StartsWith("https://"))
+            //{
+            //    WebViewForMain.CoreWebView2.ExecuteScriptAsync($"alert('{uri} 不安全，请使用HTTPS地址重新访问！')");
+            //    e.Cancel = true;
+            //}
 
             IsNavigationProgress = true;
         }
 
         private void Demo4Window_Loaded(object sender, RoutedEventArgs e)
         {
-            TextBoxForSource.Text = WebViewForMain.Source?.ToString();
+            TextBoxForNaviAddress.Text = WebViewForMain.Source?.ToString();
         }
 
-        private void BorderForNavi_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var sourceContext = TextBoxForSource.Text?.Trim();
-            WebViewForMain.CoreWebView2.Navigate(sourceContext);
-        }
+        #region NaviButton
 
-        private void TextBoxForSource_KeyDown(object sender, KeyEventArgs e)
+        /// <summary>
+        /// 导航栏-后退按钮-点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BorderForNaviBack_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.Key == Key.Enter)
+            #region BorderForNaviBack_MouseDown
+
+            if (WebViewForMain.CanGoBack)
             {
-                BorderForNavi_MouseDown(null, null);
+                WebViewForMain.GoBack();
+            }
+            else
+            {
+                UpdateNaviButtonStatus();
+            } 
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 导航栏-前进按钮-点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BorderForNaviForward_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            #region BorderForNaviForward_MouseDown
+
+            if (WebViewForMain.CanGoForward)
+            {
+                WebViewForMain.GoForward();
+            }
+            else
+            {
+                UpdateNaviButtonStatus();
+            } 
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 导航栏-主页按钮-点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BorderForNaviHome_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            #region BorderForNaviHome_MouseDown
+
+            WebViewForMain.CoreWebView2.Navigate("https://www.bing.com");
+            UpdateNaviButtonStatus(); 
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 导航栏-指定按钮-点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BorderForNaviTarget_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            #region BorderForNaviTarget_MouseDown
+
+            var sourceContent = TextBoxForNaviAddress.Text?.Trim() ?? string.Empty;
+            if (!string.IsNullOrEmpty(sourceContent))
+            {
+                Uri? sourceUri;
+
+                // 如果当前地址是格式化合规的地址，那么直接使用
+                if (Uri.IsWellFormedUriString(sourceContent, UriKind.Absolute))
+                {
+                    sourceUri = new Uri(sourceContent);
+                }
+                // 如果当前地址含.符号切不含空格，那么自动追加前缀
+                else if (!sourceContent.Contains(" ") && sourceContent.Contains("."))
+                {
+                    sourceUri = new Uri("http://" + sourceContent);
+                }
+                // 如果当前地址不属于上诉情况，那么通过内置搜索引擎搜索
+                else
+                {
+                    var searchKeywords = string.Join("+", Uri.EscapeDataString(sourceContent).Split(new string[] { "%20" }, StringSplitOptions.RemoveEmptyEntries));
+                    var bingSearchAddress = $"https://bing.com/search?q={searchKeywords}";
+                    sourceUri = new Uri(bingSearchAddress);
+                }
+
+                if (sourceUri != null)
+                {
+                    WebViewForMain.CoreWebView2.Navigate(sourceUri.ToString());
+                }
+            } 
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 导航栏-刷新按钮-点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BorderForNaviRefresh_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            #region BorderForNaviRefresh_MouseDown
+
+            WebViewForMain.Reload();
+            UpdateNaviButtonStatus(); 
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 导航栏-停止按钮-点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BorderForNaviStop_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            #region BorderForNaviStop_MouseDown
+
+            WebViewForMain.Stop();
+            UpdateNaviButtonStatus();
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 导航栏-地址输入框-快捷键(回车)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBoxForNaviAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            #region TextBoxForNaviAddress_KeyDown
+
+            if (e.Key == Key.Enter)
+            {
+                BorderForNaviTarget_MouseDown(null, null);
+            } 
+
+            #endregion
+        }
+
+        #endregion
+
+        #region ButtonEffect
+
+        /// <summary>
+        /// 更新导航栏-按钮-状态
+        /// </summary>
+        private void UpdateNaviButtonStatus()
+        {
+            #region UpdateNaviButtonStatus
+
+            var isCanGoBack = WebViewForMain.CanGoBack;
+            BorderForNaviBack.IsEnabled = isCanGoBack;
+            TextBlockForNaviBack.Foreground = isCanGoBack ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.Gray);
+
+            var isCanGoForward = WebViewForMain.CanGoForward;
+            BorderForNaviForward.IsEnabled = isCanGoForward;
+            TextBlockForNaviForward.Foreground = isCanGoForward ? new SolidColorBrush(Colors.Black) : new SolidColorBrush(Colors.Gray); 
+
+            #endregion
+        }
+
+        private void BorderForButton_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var border = sender as Border;
+            if (border.IsEnabled)
+            {
+                border.Background = new SolidColorBrush(Colors.White);
+                border.Focus();
             }
         }
+
+        private void BorderForButton_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var border = sender as Border;
+            if (border.IsEnabled)
+            {
+                border.Background = new SolidColorBrush(Colors.Transparent);
+            }
+        }
+
+        private void TextBoxForNaviAddress_MouseEnter(object sender, MouseEventArgs e)
+        {
+            BorderForNaviAddress.BorderBrush = new SolidColorBrush(Color.FromRgb(143, 177, 229));
+            BorderForNaviAddress.BorderThickness = new Thickness(1.5);
+        }
+
+        private void TextBoxForNaviAddress_MouseLeave(object sender, MouseEventArgs e)
+        {
+            BorderForNaviAddress.BorderBrush = new SolidColorBrush(Colors.Gray);
+            BorderForNaviAddress.BorderThickness = new Thickness(1);
+        }
+
+        #endregion
     }
 }

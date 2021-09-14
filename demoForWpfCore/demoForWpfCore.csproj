@@ -7,7 +7,18 @@
     <UseWPF>true</UseWPF>
     <ApplicationIcon>HelloWebView2.ico</ApplicationIcon>
     <StartupObject>demoForWpfCore.App</StartupObject>
+    <AssemblyName>MiniEdge</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\SegoeFluentIcons.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Fonts\SegoeFluentIcons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.961.33" />
