@@ -51,6 +51,7 @@ namespace demoForWinUi3
         public MainWindow()
         {
             InitializeComponent();
+            Title = "MiniEdge";
             WebViewForMain.NavigationStarting += WebViewForMain_NavigationStarting;
             WebViewForMain.NavigationCompleted += WebViewForMain_NavigationCompleted;
             //WebViewForMain.KeyDown += WebViewForMain_KeyDown;
