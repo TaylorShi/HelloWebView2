@@ -40,6 +40,10 @@ namespace demoForWinFormFrame
             // 主页按钮
             TextBlockForNaviHome.Text = "\ue10f";
             TextBlockForNaviHome.Font = new Font(IconfontHelper.PFCC.Families[0], 24);
+
+            // 搜索按钮
+            TextBlockForNaviTarget.Text = "\uf78b";
+            TextBlockForNaviTarget.Font = new Font(IconfontHelper.PFCC.Families[0], 24);
         }
 
         private void BorderForButton_MouseEnter(object sender, EventArgs e)
@@ -79,6 +83,11 @@ namespace demoForWinFormFrame
         private void TextBlockForNaviHome_MouseEnter(object sender, EventArgs e)
         {
             BorderForButton_MouseEnter(BorderForNaviHome, e);
+        }
+
+        private void TextBlockForNaviTarget_MouseEnter(object sender, EventArgs e)
+        {
+            BorderForButton_MouseEnter(BorderForNaviTarget, e);
         }
     }
 }
