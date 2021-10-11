@@ -45,6 +45,7 @@ namespace demoForWinFormFrame
             this.BorderForNaviTarget = new System.Windows.Forms.Panel();
             this.TextBlockForNaviTarget = new System.Windows.Forms.Label();
             this.BorderForNaviAddress = new System.Windows.Forms.Panel();
+            this.GirdForProgress = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.WebViewForMain)).BeginInit();
             this.BorderForNaviBack.SuspendLayout();
             this.BorderForNaviForward.SuspendLayout();
@@ -62,10 +63,9 @@ namespace demoForWinFormFrame
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WebViewForMain.CreationProperties = null;
             this.WebViewForMain.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WebViewForMain.Location = new System.Drawing.Point(0, 89);
-            this.WebViewForMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.WebViewForMain.Location = new System.Drawing.Point(0, 71);
             this.WebViewForMain.Name = "WebViewForMain";
-            this.WebViewForMain.Size = new System.Drawing.Size(1801, 862);
+            this.WebViewForMain.Size = new System.Drawing.Size(1351, 690);
             this.WebViewForMain.Source = new System.Uri("https://www.bing.com", System.UriKind.Absolute);
             this.WebViewForMain.TabIndex = 0;
             this.WebViewForMain.ZoomFactor = 1D;
@@ -74,11 +74,11 @@ namespace demoForWinFormFrame
             // 
             this.BorderForNaviBack.BackColor = System.Drawing.Color.Transparent;
             this.BorderForNaviBack.Controls.Add(this.TextBlockForNaviBack);
-            this.BorderForNaviBack.Location = new System.Drawing.Point(11, 10);
-            this.BorderForNaviBack.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorderForNaviBack.Location = new System.Drawing.Point(8, 8);
             this.BorderForNaviBack.Name = "BorderForNaviBack";
-            this.BorderForNaviBack.Size = new System.Drawing.Size(83, 68);
+            this.BorderForNaviBack.Size = new System.Drawing.Size(62, 54);
             this.BorderForNaviBack.TabIndex = 1;
+            this.BorderForNaviBack.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BorderForNaviBack_MouseDown);
             this.BorderForNaviBack.MouseEnter += new System.EventHandler(this.BorderForButton_MouseEnter);
             this.BorderForNaviBack.MouseLeave += new System.EventHandler(this.BorderForButton_MouseLeave);
             // 
@@ -86,23 +86,23 @@ namespace demoForWinFormFrame
             // 
             this.TextBlockForNaviBack.AutoSize = true;
             this.TextBlockForNaviBack.Font = new System.Drawing.Font("宋体", 12F);
-            this.TextBlockForNaviBack.Location = new System.Drawing.Point(11, 15);
-            this.TextBlockForNaviBack.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TextBlockForNaviBack.Location = new System.Drawing.Point(8, 12);
             this.TextBlockForNaviBack.Name = "TextBlockForNaviBack";
-            this.TextBlockForNaviBack.Size = new System.Drawing.Size(49, 20);
+            this.TextBlockForNaviBack.Size = new System.Drawing.Size(40, 16);
             this.TextBlockForNaviBack.TabIndex = 0;
             this.TextBlockForNaviBack.Text = "Back";
+            this.TextBlockForNaviBack.Click += new System.EventHandler(this.TextBlockForNaviBack_Click);
             this.TextBlockForNaviBack.MouseEnter += new System.EventHandler(this.TextBlockForNaviBack_MouseEnter);
             // 
             // BorderForNaviForward
             // 
             this.BorderForNaviForward.BackColor = System.Drawing.Color.Transparent;
             this.BorderForNaviForward.Controls.Add(this.TextBlockForNaviForward);
-            this.BorderForNaviForward.Location = new System.Drawing.Point(107, 10);
-            this.BorderForNaviForward.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorderForNaviForward.Location = new System.Drawing.Point(80, 8);
             this.BorderForNaviForward.Name = "BorderForNaviForward";
-            this.BorderForNaviForward.Size = new System.Drawing.Size(83, 68);
+            this.BorderForNaviForward.Size = new System.Drawing.Size(62, 54);
             this.BorderForNaviForward.TabIndex = 2;
+            this.BorderForNaviForward.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BorderForNaviForward_MouseDown);
             this.BorderForNaviForward.MouseEnter += new System.EventHandler(this.BorderForButton_MouseEnter);
             this.BorderForNaviForward.MouseLeave += new System.EventHandler(this.BorderForButton_MouseLeave);
             // 
@@ -110,23 +110,24 @@ namespace demoForWinFormFrame
             // 
             this.TextBlockForNaviForward.AutoSize = true;
             this.TextBlockForNaviForward.Font = new System.Drawing.Font("宋体", 12F);
-            this.TextBlockForNaviForward.Location = new System.Drawing.Point(11, 15);
-            this.TextBlockForNaviForward.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TextBlockForNaviForward.Location = new System.Drawing.Point(8, 12);
             this.TextBlockForNaviForward.Name = "TextBlockForNaviForward";
-            this.TextBlockForNaviForward.Size = new System.Drawing.Size(49, 20);
+            this.TextBlockForNaviForward.Size = new System.Drawing.Size(40, 16);
             this.TextBlockForNaviForward.TabIndex = 0;
             this.TextBlockForNaviForward.Text = "Forw";
+            this.TextBlockForNaviForward.Click += new System.EventHandler(this.TextBlockForNaviForward_Click);
             this.TextBlockForNaviForward.MouseEnter += new System.EventHandler(this.TextBlockForNaviForward_MouseEnter);
             // 
             // BorderForNaviStop
             // 
             this.BorderForNaviStop.BackColor = System.Drawing.Color.Transparent;
+            this.BorderForNaviStop.Controls.Add(this.BorderForNaviRefresh);
             this.BorderForNaviStop.Controls.Add(this.TextBlockForNaviStop);
-            this.BorderForNaviStop.Location = new System.Drawing.Point(204, 10);
-            this.BorderForNaviStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorderForNaviStop.Location = new System.Drawing.Point(153, 8);
             this.BorderForNaviStop.Name = "BorderForNaviStop";
-            this.BorderForNaviStop.Size = new System.Drawing.Size(83, 68);
+            this.BorderForNaviStop.Size = new System.Drawing.Size(62, 54);
             this.BorderForNaviStop.TabIndex = 3;
+            this.BorderForNaviStop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BorderForNaviStop_MouseDown);
             this.BorderForNaviStop.MouseEnter += new System.EventHandler(this.BorderForButton_MouseEnter);
             this.BorderForNaviStop.MouseLeave += new System.EventHandler(this.BorderForButton_MouseLeave);
             // 
@@ -134,23 +135,23 @@ namespace demoForWinFormFrame
             // 
             this.TextBlockForNaviStop.AutoSize = true;
             this.TextBlockForNaviStop.Font = new System.Drawing.Font("宋体", 12F);
-            this.TextBlockForNaviStop.Location = new System.Drawing.Point(11, 15);
-            this.TextBlockForNaviStop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TextBlockForNaviStop.Location = new System.Drawing.Point(8, 12);
             this.TextBlockForNaviStop.Name = "TextBlockForNaviStop";
-            this.TextBlockForNaviStop.Size = new System.Drawing.Size(49, 20);
+            this.TextBlockForNaviStop.Size = new System.Drawing.Size(40, 16);
             this.TextBlockForNaviStop.TabIndex = 0;
             this.TextBlockForNaviStop.Text = "Stop";
+            this.TextBlockForNaviStop.Click += new System.EventHandler(this.TextBlockForNaviStop_Click);
             this.TextBlockForNaviStop.MouseEnter += new System.EventHandler(this.TextBlockForNaviStop_MouseEnter);
             // 
             // BorderForNaviRefresh
             // 
             this.BorderForNaviRefresh.BackColor = System.Drawing.Color.Transparent;
             this.BorderForNaviRefresh.Controls.Add(this.TextBlockForNaviRefresh);
-            this.BorderForNaviRefresh.Location = new System.Drawing.Point(204, 10);
-            this.BorderForNaviRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorderForNaviRefresh.Location = new System.Drawing.Point(0, 0);
             this.BorderForNaviRefresh.Name = "BorderForNaviRefresh";
-            this.BorderForNaviRefresh.Size = new System.Drawing.Size(83, 68);
+            this.BorderForNaviRefresh.Size = new System.Drawing.Size(62, 54);
             this.BorderForNaviRefresh.TabIndex = 4;
+            this.BorderForNaviRefresh.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BorderForNaviRefresh_MouseDown);
             this.BorderForNaviRefresh.MouseEnter += new System.EventHandler(this.BorderForButton_MouseEnter);
             this.BorderForNaviRefresh.MouseLeave += new System.EventHandler(this.BorderForButton_MouseLeave);
             // 
@@ -158,23 +159,23 @@ namespace demoForWinFormFrame
             // 
             this.TextBlockForNaviRefresh.AutoSize = true;
             this.TextBlockForNaviRefresh.Font = new System.Drawing.Font("宋体", 12F);
-            this.TextBlockForNaviRefresh.Location = new System.Drawing.Point(11, 15);
-            this.TextBlockForNaviRefresh.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TextBlockForNaviRefresh.Location = new System.Drawing.Point(8, 12);
             this.TextBlockForNaviRefresh.Name = "TextBlockForNaviRefresh";
-            this.TextBlockForNaviRefresh.Size = new System.Drawing.Size(49, 20);
+            this.TextBlockForNaviRefresh.Size = new System.Drawing.Size(40, 16);
             this.TextBlockForNaviRefresh.TabIndex = 0;
             this.TextBlockForNaviRefresh.Text = "Rere";
+            this.TextBlockForNaviRefresh.Click += new System.EventHandler(this.TextBlockForNaviRefresh_Click);
             this.TextBlockForNaviRefresh.MouseEnter += new System.EventHandler(this.TextBlockForNaviRefresh_MouseEnter);
             // 
             // BorderForNaviHome
             // 
             this.BorderForNaviHome.BackColor = System.Drawing.Color.Transparent;
             this.BorderForNaviHome.Controls.Add(this.TextBlockForNaviHome);
-            this.BorderForNaviHome.Location = new System.Drawing.Point(300, 10);
-            this.BorderForNaviHome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorderForNaviHome.Location = new System.Drawing.Point(225, 8);
             this.BorderForNaviHome.Name = "BorderForNaviHome";
-            this.BorderForNaviHome.Size = new System.Drawing.Size(83, 68);
+            this.BorderForNaviHome.Size = new System.Drawing.Size(62, 54);
             this.BorderForNaviHome.TabIndex = 5;
+            this.BorderForNaviHome.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BorderForNaviBack_MouseDown);
             this.BorderForNaviHome.MouseEnter += new System.EventHandler(this.BorderForButton_MouseEnter);
             this.BorderForNaviHome.MouseLeave += new System.EventHandler(this.BorderForButton_MouseLeave);
             // 
@@ -182,12 +183,12 @@ namespace demoForWinFormFrame
             // 
             this.TextBlockForNaviHome.AutoSize = true;
             this.TextBlockForNaviHome.Font = new System.Drawing.Font("宋体", 12F);
-            this.TextBlockForNaviHome.Location = new System.Drawing.Point(11, 15);
-            this.TextBlockForNaviHome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TextBlockForNaviHome.Location = new System.Drawing.Point(8, 12);
             this.TextBlockForNaviHome.Name = "TextBlockForNaviHome";
-            this.TextBlockForNaviHome.Size = new System.Drawing.Size(49, 20);
+            this.TextBlockForNaviHome.Size = new System.Drawing.Size(40, 16);
             this.TextBlockForNaviHome.TabIndex = 0;
             this.TextBlockForNaviHome.Text = "Home";
+            this.TextBlockForNaviHome.Click += new System.EventHandler(this.TextBlockForNaviHome_Click);
             this.TextBlockForNaviHome.MouseEnter += new System.EventHandler(this.TextBlockForNaviHome_MouseEnter);
             // 
             // TextBoxForNaviAddress
@@ -197,23 +198,23 @@ namespace demoForWinFormFrame
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxForNaviAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxForNaviAddress.Font = new System.Drawing.Font("宋体", 24F);
-            this.TextBoxForNaviAddress.Location = new System.Drawing.Point(11, 11);
-            this.TextBoxForNaviAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextBoxForNaviAddress.Location = new System.Drawing.Point(8, 9);
             this.TextBoxForNaviAddress.Multiline = true;
             this.TextBoxForNaviAddress.Name = "TextBoxForNaviAddress";
-            this.TextBoxForNaviAddress.Size = new System.Drawing.Size(1281, 48);
+            this.TextBoxForNaviAddress.Size = new System.Drawing.Size(961, 38);
             this.TextBoxForNaviAddress.TabIndex = 6;
             this.TextBoxForNaviAddress.Text = "321321";
+            this.TextBoxForNaviAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxForNaviAddress_KeyDown);
             // 
             // BorderForNaviTarget
             // 
             this.BorderForNaviTarget.BackColor = System.Drawing.Color.Transparent;
             this.BorderForNaviTarget.Controls.Add(this.TextBlockForNaviTarget);
-            this.BorderForNaviTarget.Location = new System.Drawing.Point(1707, 10);
-            this.BorderForNaviTarget.Margin = new System.Windows.Forms.Padding(4);
+            this.BorderForNaviTarget.Location = new System.Drawing.Point(1280, 8);
             this.BorderForNaviTarget.Name = "BorderForNaviTarget";
-            this.BorderForNaviTarget.Size = new System.Drawing.Size(83, 68);
+            this.BorderForNaviTarget.Size = new System.Drawing.Size(62, 54);
             this.BorderForNaviTarget.TabIndex = 7;
+            this.BorderForNaviTarget.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BorderForNaviTarget_MouseDown);
             this.BorderForNaviTarget.MouseEnter += new System.EventHandler(this.BorderForButton_MouseEnter);
             this.BorderForNaviTarget.MouseLeave += new System.EventHandler(this.BorderForButton_MouseLeave);
             // 
@@ -221,12 +222,12 @@ namespace demoForWinFormFrame
             // 
             this.TextBlockForNaviTarget.AutoSize = true;
             this.TextBlockForNaviTarget.Font = new System.Drawing.Font("宋体", 12F);
-            this.TextBlockForNaviTarget.Location = new System.Drawing.Point(11, 15);
-            this.TextBlockForNaviTarget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.TextBlockForNaviTarget.Location = new System.Drawing.Point(8, 12);
             this.TextBlockForNaviTarget.Name = "TextBlockForNaviTarget";
-            this.TextBlockForNaviTarget.Size = new System.Drawing.Size(69, 20);
+            this.TextBlockForNaviTarget.Size = new System.Drawing.Size(56, 16);
             this.TextBlockForNaviTarget.TabIndex = 0;
             this.TextBlockForNaviTarget.Text = "Target";
+            this.TextBlockForNaviTarget.Click += new System.EventHandler(this.TextBlockForNaviTarget_Click);
             this.TextBlockForNaviTarget.MouseEnter += new System.EventHandler(this.TextBlockForNaviTarget_MouseEnter);
             // 
             // BorderForNaviAddress
@@ -234,28 +235,35 @@ namespace demoForWinFormFrame
             this.BorderForNaviAddress.BackColor = System.Drawing.Color.White;
             this.BorderForNaviAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.BorderForNaviAddress.Controls.Add(this.TextBoxForNaviAddress);
-            this.BorderForNaviAddress.Location = new System.Drawing.Point(391, 10);
-            this.BorderForNaviAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.BorderForNaviAddress.Location = new System.Drawing.Point(293, 8);
             this.BorderForNaviAddress.Name = "BorderForNaviAddress";
-            this.BorderForNaviAddress.Size = new System.Drawing.Size(1308, 68);
+            this.BorderForNaviAddress.Size = new System.Drawing.Size(982, 55);
             this.BorderForNaviAddress.TabIndex = 8;
+            // 
+            // GirdForProgress
+            // 
+            this.GirdForProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GirdForProgress.Location = new System.Drawing.Point(0, 68);
+            this.GirdForProgress.Name = "GirdForProgress";
+            this.GirdForProgress.Size = new System.Drawing.Size(1352, 1);
+            this.GirdForProgress.TabIndex = 9;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
-            this.ClientSize = new System.Drawing.Size(1801, 951);
+            this.ClientSize = new System.Drawing.Size(1351, 761);
+            this.Controls.Add(this.GirdForProgress);
             this.Controls.Add(this.BorderForNaviAddress);
             this.Controls.Add(this.BorderForNaviTarget);
             this.Controls.Add(this.BorderForNaviHome);
-            this.Controls.Add(this.BorderForNaviRefresh);
             this.Controls.Add(this.BorderForNaviStop);
             this.Controls.Add(this.BorderForNaviForward);
             this.Controls.Add(this.BorderForNaviBack);
             this.Controls.Add(this.WebViewForMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MiniEdge";
@@ -295,6 +303,7 @@ namespace demoForWinFormFrame
         private System.Windows.Forms.Panel BorderForNaviTarget;
         private System.Windows.Forms.Label TextBlockForNaviTarget;
         private System.Windows.Forms.Panel BorderForNaviAddress;
+        private System.Windows.Forms.ProgressBar GirdForProgress;
     }
 }
 

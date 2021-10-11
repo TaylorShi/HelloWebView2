@@ -53,66 +53,63 @@ namespace demoForWpfCore
             WebViewForMain.CoreWebView2InitializationCompleted += WebViewForMain_CoreWebView2InitializationCompleted;
         }
 
-        private void WebViewForMain_CoreWebView2InitializationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2InitializationCompletedEventArgs e)
+        private void Demo4Window_Loaded(object sender, RoutedEventArgs e)
         {
+            TextBoxForNaviAddress.Text = WebViewForMain.Source?.ToString();
+        }
+
+        #region WebViewEvent
+
+        /// <summary>
+        /// 浏览器实例-导航开始事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WebViewForMain_NavigationStarting(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e)
+        {
+            #region WebViewForMain_NavigationStarting
+
+            //var uri = e.Uri;
+            //if (!uri.ToLower().StartsWith("https://"))
+            //{
+            //    WebViewForMain.CoreWebView2.ExecuteScriptAsync($"alert('{uri} 不安全，请使用HTTPS地址重新访问！')");
+            //    e.Cancel = true;
+            //}
+
+            IsNavigationProgress = true;
+
+            #endregion
+        }
+
+        /// <summary>
+        /// 浏览器实例-导航完成事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WebViewForMain_NavigationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
+        {
+            #region WebViewForMain_NavigationCompleted
+
             if (e.IsSuccess)
             {
-                WebViewForMain.CoreWebView2.ProcessFailed += CoreWebView2_ProcessFailed;
+                TextBoxForNaviAddress.Text = WebViewForMain.Source?.ToString();
             }
-            else
-            {
-                MessageBox.Show($"WebView2创建失败，发生异常 = {e.InitializationException}");
-            }
+
+            IsNavigationProgress = false;
+            UpdateNaviButtonStatus();
+
+            #endregion
         }
 
-
-        private void CoreWebView2_ProcessFailed(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2ProcessFailedEventArgs e)
-        {
-            switch (e.ProcessFailedKind)
-            {
-                // 浏览器进程退出
-                case CoreWebView2ProcessFailedKind.BrowserProcessExited:
-                {
-
-                }
-                break;
-                 // 浏览器渲染进程未响应
-                case CoreWebView2ProcessFailedKind.RenderProcessUnresponsive:
-                {
-
-                }
-                break;
-                // 浏览器渲染进程退出
-                case CoreWebView2ProcessFailedKind.RenderProcessExited:
-                {
-
-                }
-                break;
-                    // 框架渲染进程退出
-                case CoreWebView2ProcessFailedKind.FrameRenderProcessExited:
-                {
-                    
-                }
-                break;
-                default:
-                {
-                    // Show the process failure details. Apps can collect info for their logging purposes.
-                    StringBuilder messageBuilder = new StringBuilder();
-                    messageBuilder.AppendLine($"Process kind: {e.ProcessFailedKind}");
-                    messageBuilder.AppendLine($"Reason: {e.Reason}");
-                    messageBuilder.AppendLine($"Exit code: {e.ExitCode}");
-                    messageBuilder.AppendLine($"Process description: {e.ProcessDescription}");
-                    System.Threading.SynchronizationContext.Current.Post((_) =>
-                    {
-                        MessageBox.Show(messageBuilder.ToString(), "Child process failed", MessageBoxButton.OK);
-                    }, null);
-                }
-                break;
-            }
-        }
-
+        /// <summary>
+        /// 浏览器实例-键盘按下事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void WebViewForMain_KeyDown(object sender, KeyEventArgs e)
         {
+            #region WebViewForMain_KeyDown
+
             if (e.IsRepeat) return;
             bool ctrl = e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) || e.KeyboardDevice.IsKeyDown(Key.RightCtrl);
             bool alt = e.KeyboardDevice.IsKeyDown(Key.LeftAlt) || e.KeyboardDevice.IsKeyDown(Key.RightAlt);
@@ -128,35 +125,86 @@ namespace demoForWpfCore
                 Close();
                 e.Handled = true;
             }
+
+            #endregion
         }
 
-        private void WebViewForMain_NavigationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationCompletedEventArgs e)
+        /// <summary>
+        /// 浏览器实例-内核初始化完成事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WebViewForMain_CoreWebView2InitializationCompleted(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2InitializationCompletedEventArgs e)
         {
+            #region WebViewForMain_CoreWebView2InitializationCompleted
+
             if (e.IsSuccess)
             {
-                TextBoxForNaviAddress.Text = WebViewForMain.Source?.ToString();
+                WebViewForMain.CoreWebView2.ProcessFailed += WebViewForMain_CoreWebView2_ProcessFailed;
+            }
+            else
+            {
+                MessageBox.Show($"WebView2创建失败，发生异常 = {e.InitializationException}");
             }
 
-            IsNavigationProgress = false;
-            UpdateNaviButtonStatus();
+            #endregion
         }
 
-        private void WebViewForMain_NavigationStarting(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2NavigationStartingEventArgs e)
+        /// <summary>
+        /// 浏览器实例-内核-进程异常事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void WebViewForMain_CoreWebView2_ProcessFailed(object? sender, Microsoft.Web.WebView2.Core.CoreWebView2ProcessFailedEventArgs e)
         {
-            //var uri = e.Uri;
-            //if (!uri.ToLower().StartsWith("https://"))
-            //{
-            //    WebViewForMain.CoreWebView2.ExecuteScriptAsync($"alert('{uri} 不安全，请使用HTTPS地址重新访问！')");
-            //    e.Cancel = true;
-            //}
+            #region WebViewForMain_CoreWebView2_ProcessFailed
 
-            IsNavigationProgress = true;
-        }
+            switch (e.ProcessFailedKind)
+            {
+                // 浏览器进程退出
+                case CoreWebView2ProcessFailedKind.BrowserProcessExited:
+                    {
 
-        private void Demo4Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            TextBoxForNaviAddress.Text = WebViewForMain.Source?.ToString();
-        }
+                    }
+                    break;
+                // 浏览器渲染进程未响应
+                case CoreWebView2ProcessFailedKind.RenderProcessUnresponsive:
+                    {
+
+                    }
+                    break;
+                // 浏览器渲染进程退出
+                case CoreWebView2ProcessFailedKind.RenderProcessExited:
+                    {
+
+                    }
+                    break;
+                // 框架渲染进程退出
+                case CoreWebView2ProcessFailedKind.FrameRenderProcessExited:
+                    {
+
+                    }
+                    break;
+                default:
+                    {
+                        // Show the process failure details. Apps can collect info for their logging purposes.
+                        StringBuilder messageBuilder = new StringBuilder();
+                        messageBuilder.AppendLine($"Process kind: {e.ProcessFailedKind}");
+                        messageBuilder.AppendLine($"Reason: {e.Reason}");
+                        messageBuilder.AppendLine($"Exit code: {e.ExitCode}");
+                        messageBuilder.AppendLine($"Process description: {e.ProcessDescription}");
+                        System.Threading.SynchronizationContext.Current.Post((_) =>
+                        {
+                            MessageBox.Show(messageBuilder.ToString(), "Child process failed", MessageBoxButton.OK);
+                        }, null);
+                    }
+                    break;
+            }
+
+            #endregion
+        } 
+
+        #endregion
 
         #region NaviButton
 
