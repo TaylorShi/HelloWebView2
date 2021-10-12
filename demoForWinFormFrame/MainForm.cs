@@ -428,8 +428,13 @@ namespace demoForWinFormFrame
             #endregion
         }
 
+        /// <summary>
+        /// 初始化按钮样式
+        /// </summary>
         private void InitButtonStyle()
         {
+            #region InitButtonStyle
+
             // 后退按钮
             TextBlockForNaviBack.Text = "\ue0a6";
             TextBlockForNaviBack.Font = new Font(IconfontHelper.PFCC.Families[0], 24);
@@ -452,7 +457,9 @@ namespace demoForWinFormFrame
 
             // 搜索按钮
             TextBlockForNaviTarget.Text = "\uf78b";
-            TextBlockForNaviTarget.Font = new Font(IconfontHelper.PFCC.Families[0], 24);
+            TextBlockForNaviTarget.Font = new Font(IconfontHelper.PFCC.Families[0], 24); 
+
+            #endregion
         }
 
         private void BorderForButton_MouseEnter(object sender, EventArgs e)

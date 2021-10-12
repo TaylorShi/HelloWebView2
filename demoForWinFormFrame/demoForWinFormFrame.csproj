@@ -62,7 +62,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IconfontHelper.cs" />
+    <Compile Include="Controls\CornerRadiusPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CornerTextbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CornerTextbox.Designer.cs">
+      <DependentUpon>CornerTextbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\GraphicsExtension.cs" />
+    <Compile Include="Controls\LabelButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LabelButton.Designer.cs">
+      <DependentUpon>LabelButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CornerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CornerForm.Designer.cs">
+      <DependentUpon>CornerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Toolkits\IconfontHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +93,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\CornerTextbox.resx">
+      <DependentUpon>CornerTextbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LabelButton.resx">
+      <DependentUpon>LabelButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CornerForm.resx">
+      <DependentUpon>CornerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HelloWebView2.ico" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -101,6 +132,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Web.WebView2.1.0.961.33\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.961.33\build\Microsoft.Web.WebView2.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
