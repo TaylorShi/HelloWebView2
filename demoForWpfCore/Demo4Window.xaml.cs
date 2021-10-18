@@ -269,7 +269,7 @@ namespace demoForWpfCore
         /// 导航栏-指定按钮-点击事件
         /// </summary>
         /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="e"></param>f
         private void BorderForNaviTarget_MouseDown(object sender, MouseButtonEventArgs e)
         {
             #region BorderForNaviTarget_MouseDown

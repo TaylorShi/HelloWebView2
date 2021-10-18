@@ -16,5 +16,25 @@ namespace demoForWinFormFrame.Controls
         {
             InitializeComponent();
         }
+
+        public override string Text => TextBoxForInputBox.Text;
+
+        public void SetText(string inputText)
+        {
+            TextBoxForInputBox.Text = inputText;
+        }
+
+        public delegate void KeyDownEventHandler(KeyEventArgs e);
+        public event KeyDownEventHandler KeyDowned;
+        public void OnKeyDowned(KeyEventArgs e)
+        {
+            if (KeyDowned != null)
+                KeyDowned(e);
+        }
+
+        private void TextBoxForInputBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            OnKeyDowned(e);
+        }
     }
 }
