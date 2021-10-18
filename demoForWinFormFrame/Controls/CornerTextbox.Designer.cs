@@ -41,7 +41,7 @@ namespace demoForWinFormFrame.Controls
             this.cornerRadiusPanel1.Controls.Add(this.TextBoxForInputBox);
             this.cornerRadiusPanel1.Location = new System.Drawing.Point(-9, -8);
             this.cornerRadiusPanel1.Name = "cornerRadiusPanel1";
-            this.cornerRadiusPanel1.Size = new System.Drawing.Size(641, 116);
+            this.cornerRadiusPanel1.Size = new System.Drawing.Size(640, 107);
             this.cornerRadiusPanel1.TabIndex = 0;
             // 
             // TextBoxForInputBox
@@ -49,11 +49,10 @@ namespace demoForWinFormFrame.Controls
             this.TextBoxForInputBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxForInputBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxForInputBox.Font = new System.Drawing.Font("宋体", 24F);
-            this.TextBoxForInputBox.Location = new System.Drawing.Point(25, 21);
-            this.TextBoxForInputBox.Multiline = true;
+            this.TextBoxForInputBox.Font = new System.Drawing.Font("宋体", 20F);
+            this.TextBoxForInputBox.Location = new System.Drawing.Point(24, 20);
             this.TextBoxForInputBox.Name = "TextBoxForInputBox";
-            this.TextBoxForInputBox.Size = new System.Drawing.Size(575, 44);
+            this.TextBoxForInputBox.Size = new System.Drawing.Size(574, 31);
             this.TextBoxForInputBox.TabIndex = 0;
             this.TextBoxForInputBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxForInputBox_KeyDown);
             // 
@@ -63,7 +62,7 @@ namespace demoForWinFormFrame.Controls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.cornerRadiusPanel1);
             this.Name = "CornerTextbox";
-            this.Size = new System.Drawing.Size(603, 60);
+            this.Size = new System.Drawing.Size(603, 50);
             this.cornerRadiusPanel1.ResumeLayout(false);
             this.cornerRadiusPanel1.PerformLayout();
             this.ResumeLayout(false);

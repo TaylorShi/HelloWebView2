@@ -23,6 +23,7 @@ namespace demoForWinFormFrame
             set
             {
                 _isNavigationProgress = value;
+                GirdForProgress.Enabled = GirdForProgress.Visible = value;
                 LabelButtonForNaviRefresh.Visible = !value;
                 LabelButtonForNaviStop.Visible = value;
             }
@@ -357,7 +358,7 @@ namespace demoForWinFormFrame
             LabelButtonForNaviForward.SetText("\ue0ab");
 
             // 停止按钮
-            LabelButtonForNaviStop.SetText("\ue106", 26);
+            LabelButtonForNaviStop.SetText("\ue106", 22);
 
             // 刷新按钮
             LabelButtonForNaviRefresh.SetText("\ue149");

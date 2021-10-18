@@ -38,6 +38,7 @@ namespace demoForWinFormFrame
             this.LabelButtonForNaviHome = new demoForWinFormFrame.Controls.LabelButton();
             this.LabelButtonForNaviForward = new demoForWinFormFrame.Controls.LabelButton();
             this.LabelButtonForNaviBack = new demoForWinFormFrame.Controls.LabelButton();
+            this.GirdForProgress = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.WebViewForMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -48,9 +49,9 @@ namespace demoForWinFormFrame
             | System.Windows.Forms.AnchorStyles.Right)));
             this.WebViewForMain.CreationProperties = null;
             this.WebViewForMain.DefaultBackgroundColor = System.Drawing.Color.White;
-            this.WebViewForMain.Location = new System.Drawing.Point(-2, 79);
+            this.WebViewForMain.Location = new System.Drawing.Point(0, 60);
             this.WebViewForMain.Name = "WebViewForMain";
-            this.WebViewForMain.Size = new System.Drawing.Size(1354, 684);
+            this.WebViewForMain.Size = new System.Drawing.Size(1351, 702);
             this.WebViewForMain.Source = new System.Uri("https://www.bing.com", System.UriKind.Absolute);
             this.WebViewForMain.TabIndex = 3;
             this.WebViewForMain.ZoomFactor = 1D;
@@ -59,9 +60,9 @@ namespace demoForWinFormFrame
             // 
             this.TextBoxForNaviAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBoxForNaviAddress.Location = new System.Drawing.Point(294, 7);
+            this.TextBoxForNaviAddress.Location = new System.Drawing.Point(241, 5);
             this.TextBoxForNaviAddress.Name = "TextBoxForNaviAddress";
-            this.TextBoxForNaviAddress.Size = new System.Drawing.Size(973, 60);
+            this.TextBoxForNaviAddress.Size = new System.Drawing.Size(1043, 50);
             this.TextBoxForNaviAddress.TabIndex = 4;
             this.TextBoxForNaviAddress.KeyDowned += new demoForWinFormFrame.Controls.CornerTextbox.KeyDownEventHandler(this.TextBoxForNaviAddress_KeyDowned);
             // 
@@ -71,10 +72,10 @@ namespace demoForWinFormFrame
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LabelButtonForNaviTarget.BackColor = System.Drawing.Color.Transparent;
             this.LabelButtonForNaviTarget.IsEnable = true;
-            this.LabelButtonForNaviTarget.Location = new System.Drawing.Point(1279, 9);
+            this.LabelButtonForNaviTarget.Location = new System.Drawing.Point(1297, 9);
             this.LabelButtonForNaviTarget.Margin = new System.Windows.Forms.Padding(0);
             this.LabelButtonForNaviTarget.Name = "LabelButtonForNaviTarget";
-            this.LabelButtonForNaviTarget.Size = new System.Drawing.Size(60, 60);
+            this.LabelButtonForNaviTarget.Size = new System.Drawing.Size(45, 45);
             this.LabelButtonForNaviTarget.TabIndex = 2;
             this.LabelButtonForNaviTarget.Tapped += new demoForWinFormFrame.Controls.LabelButton.TappedEventHandler(this.LabelButtonForNaviTarget_Tapped);
             // 
@@ -82,10 +83,10 @@ namespace demoForWinFormFrame
             // 
             this.LabelButtonForNaviStop.BackColor = System.Drawing.Color.Transparent;
             this.LabelButtonForNaviStop.IsEnable = true;
-            this.LabelButtonForNaviStop.Location = new System.Drawing.Point(152, 9);
+            this.LabelButtonForNaviStop.Location = new System.Drawing.Point(126, 9);
             this.LabelButtonForNaviStop.Margin = new System.Windows.Forms.Padding(0);
             this.LabelButtonForNaviStop.Name = "LabelButtonForNaviStop";
-            this.LabelButtonForNaviStop.Size = new System.Drawing.Size(60, 60);
+            this.LabelButtonForNaviStop.Size = new System.Drawing.Size(45, 45);
             this.LabelButtonForNaviStop.TabIndex = 2;
             this.LabelButtonForNaviStop.Tapped += new demoForWinFormFrame.Controls.LabelButton.TappedEventHandler(this.LabelButtonForNaviStop_Tapped);
             // 
@@ -93,10 +94,10 @@ namespace demoForWinFormFrame
             // 
             this.LabelButtonForNaviRefresh.BackColor = System.Drawing.Color.Transparent;
             this.LabelButtonForNaviRefresh.IsEnable = true;
-            this.LabelButtonForNaviRefresh.Location = new System.Drawing.Point(152, 7);
+            this.LabelButtonForNaviRefresh.Location = new System.Drawing.Point(126, 9);
             this.LabelButtonForNaviRefresh.Margin = new System.Windows.Forms.Padding(0);
             this.LabelButtonForNaviRefresh.Name = "LabelButtonForNaviRefresh";
-            this.LabelButtonForNaviRefresh.Size = new System.Drawing.Size(60, 60);
+            this.LabelButtonForNaviRefresh.Size = new System.Drawing.Size(45, 45);
             this.LabelButtonForNaviRefresh.TabIndex = 2;
             this.LabelButtonForNaviRefresh.Tapped += new demoForWinFormFrame.Controls.LabelButton.TappedEventHandler(this.LabelButtonForNaviRefresh_Tapped);
             // 
@@ -104,10 +105,10 @@ namespace demoForWinFormFrame
             // 
             this.LabelButtonForNaviHome.BackColor = System.Drawing.Color.Transparent;
             this.LabelButtonForNaviHome.IsEnable = true;
-            this.LabelButtonForNaviHome.Location = new System.Drawing.Point(224, 7);
+            this.LabelButtonForNaviHome.Location = new System.Drawing.Point(184, 9);
             this.LabelButtonForNaviHome.Margin = new System.Windows.Forms.Padding(0);
             this.LabelButtonForNaviHome.Name = "LabelButtonForNaviHome";
-            this.LabelButtonForNaviHome.Size = new System.Drawing.Size(60, 60);
+            this.LabelButtonForNaviHome.Size = new System.Drawing.Size(45, 45);
             this.LabelButtonForNaviHome.TabIndex = 2;
             this.LabelButtonForNaviHome.Tapped += new demoForWinFormFrame.Controls.LabelButton.TappedEventHandler(this.LabelButtonForNaviHome_Tapped);
             // 
@@ -115,10 +116,10 @@ namespace demoForWinFormFrame
             // 
             this.LabelButtonForNaviForward.BackColor = System.Drawing.Color.Transparent;
             this.LabelButtonForNaviForward.IsEnable = true;
-            this.LabelButtonForNaviForward.Location = new System.Drawing.Point(80, 7);
+            this.LabelButtonForNaviForward.Location = new System.Drawing.Point(67, 9);
             this.LabelButtonForNaviForward.Margin = new System.Windows.Forms.Padding(0);
             this.LabelButtonForNaviForward.Name = "LabelButtonForNaviForward";
-            this.LabelButtonForNaviForward.Size = new System.Drawing.Size(60, 60);
+            this.LabelButtonForNaviForward.Size = new System.Drawing.Size(45, 45);
             this.LabelButtonForNaviForward.TabIndex = 2;
             this.LabelButtonForNaviForward.Tapped += new demoForWinFormFrame.Controls.LabelButton.TappedEventHandler(this.LabelButtonForNaviForward_Tapped);
             // 
@@ -126,12 +127,22 @@ namespace demoForWinFormFrame
             // 
             this.LabelButtonForNaviBack.BackColor = System.Drawing.Color.Transparent;
             this.LabelButtonForNaviBack.IsEnable = true;
-            this.LabelButtonForNaviBack.Location = new System.Drawing.Point(8, 7);
+            this.LabelButtonForNaviBack.Location = new System.Drawing.Point(9, 9);
             this.LabelButtonForNaviBack.Margin = new System.Windows.Forms.Padding(0);
             this.LabelButtonForNaviBack.Name = "LabelButtonForNaviBack";
-            this.LabelButtonForNaviBack.Size = new System.Drawing.Size(60, 60);
+            this.LabelButtonForNaviBack.Size = new System.Drawing.Size(45, 45);
             this.LabelButtonForNaviBack.TabIndex = 1;
             this.LabelButtonForNaviBack.Tapped += new demoForWinFormFrame.Controls.LabelButton.TappedEventHandler(this.LabelButtonForNaviBack_Tapped);
+            // 
+            // GirdForProgress
+            // 
+            this.GirdForProgress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GirdForProgress.Location = new System.Drawing.Point(0, 60);
+            this.GirdForProgress.Name = "GirdForProgress";
+            this.GirdForProgress.Size = new System.Drawing.Size(1351, 1);
+            this.GirdForProgress.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.GirdForProgress.TabIndex = 5;
             // 
             // CornerForm
             // 
@@ -139,6 +150,7 @@ namespace demoForWinFormFrame
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(247)))), ((int)(((byte)(247)))));
             this.ClientSize = new System.Drawing.Size(1351, 761);
+            this.Controls.Add(this.GirdForProgress);
             this.Controls.Add(this.TextBoxForNaviAddress);
             this.Controls.Add(this.WebViewForMain);
             this.Controls.Add(this.LabelButtonForNaviTarget);
@@ -165,5 +177,6 @@ namespace demoForWinFormFrame
         private Controls.CornerTextbox TextBoxForNaviAddress;
         private Controls.LabelButton LabelButtonForNaviRefresh;
         private Controls.LabelButton LabelButtonForNaviStop;
+        private System.Windows.Forms.ProgressBar GirdForProgress;
     }
 }

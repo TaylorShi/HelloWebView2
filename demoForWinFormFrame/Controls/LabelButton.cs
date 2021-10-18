@@ -19,7 +19,7 @@ namespace demoForWinFormFrame.Controls
             InitializeComponent();
         }
 
-        public void SetText(string iconFontValue, int fontSize = 24)
+        public void SetText(string iconFontValue, int fontSize = 20)
         {
             TextBlockForNaviBack.Text = iconFontValue;
             TextBlockForNaviBack.Font = new Font(IconfontHelper.PFCC.Families[0], fontSize);
