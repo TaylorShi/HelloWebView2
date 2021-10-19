@@ -16,7 +16,7 @@ namespace demoForWinFormFrame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CornerForm());
+            Application.Run(new MainForm());
         }
     }
 }
