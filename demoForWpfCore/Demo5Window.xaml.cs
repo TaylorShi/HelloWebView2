@@ -64,7 +64,7 @@ namespace demoForWpfCore
             WebViewForMain.CoreWebView2.Settings.IsScriptEnabled = true;
             WebViewForMain.CoreWebView2.Settings.IsWebMessageEnabled = true;
 
-            WebViewForMain.CoreWebView2.AddHostObjectToScript("WebViewJavascriptBridge", new HostObject.WsC2WHostObject());
+            WebViewForMain.CoreWebView2.AddHostObjectToScript("webView2Bridge", new HostObject.C2WHostObject());
         }
 
         #region WebViewEvent

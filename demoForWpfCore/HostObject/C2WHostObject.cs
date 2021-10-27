@@ -10,11 +10,16 @@ namespace demoForWpfCore.HostObject
     [System.Runtime.InteropServices.ClassInterface(System.Runtime.InteropServices.ClassInterfaceType.AutoDual)]
     #pragma warning restore CS0618
     [System.Runtime.InteropServices.ComVisible(true)]
-    public class WsC2WHostObject
+    public class C2WHostObject
     {
-        public void WSClientFunction(string requestInfo)
+        public void ClientFunction(string requestInfo)
         {
             Console.WriteLine(requestInfo);
+        }
+
+        public string ClientValueBack(string requestInfo)
+        {
+            return requestInfo;
         }
     }
 }
