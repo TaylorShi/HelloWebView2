@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>HelloWebView2.ico</ApplicationIcon>
+    <AssemblyName>MiniEdge</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Fonts\SegoeFluentIcons.ttf" />
+    <None Remove="HelloWebView2.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Fonts\SegoeFluentIcons.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HelloWebView2.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ModernWpfUI" Version="0.9.4" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1020.30" />
+  </ItemGroup>
+
+</Project>
